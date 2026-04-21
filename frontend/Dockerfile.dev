@@ -1,0 +1,20 @@
+FROM node:20-alpine
+
+# This file makes sure Nuxt is run in the container and is in the same Docker network as Directus. 
+# Otherwhise Nuxt would be run completely locally.
+# The .dev suffix is a convention for the dev environment.
+
+WORKDIR /app
+
+# Package files kopieren
+COPY package*.json ./
+
+# Dependencies installieren
+RUN npm install
+
+# Rest kopieren (wird durch Volume gemountet)
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]

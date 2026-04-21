@@ -1,0 +1,47 @@
+services:
+  directus:
+    image: directus/directus:11 # This will pull the latest stable version of the major release 11
+    ports:
+      # Mapping the port of the container to the port of the host
+      - "8055:8055"
+    volumes:
+      # Mounting the local directories (./directus/...) into the container
+      - ./directus/database:/directus/database
+      - ./directus/uploads:/directus/uploads
+      - ./directus/extensions:/directus/extensions
+    environment:
+      # Env variables
+      SECRET: ${DIRECTUS_SECRET}
+      ADMIN_EMAIL: ${DIRECTUS_ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD}
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/data.db"
+      WEBSOCKETS_ENABLED: "true"
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: ${CORS_ORIGIN}
+      PUBLIC_URL: ${DIRECTUS_PUBLIC_URL}
+      CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC: "'self' ${CORS_ORIGIN}"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__CHILD_SRC: "'self' blob: ${CORS_ORIGIN}"
+      # Other stuff
+      CACHE_AUTO_PURGE: "true"
+      CORS_CREDENTIALS: "true"
+    restart: unless-stopped # Automatically restart the container in case of crash
+    
+  frontend:
+    build:
+      context: ./frontend 
+      dockerfile: Dockerfile.dev # Use this for development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app # Binds the local frontend directory into the container (incl. hot reload)
+      - /app/node_modules # Makes sure the local node_modules don't override the ones in the container
+      - /app/.nuxt # Makes sure the local .nuxt directory doesn't override the one in the container
+    environment:
+      # Env variables
+      NUXT_DIRECTUS_URL: ${NUXT_DIRECTUS_URL}
+      NUXT_PUBLIC_DIRECTUS_URL: ${NUXT_PUBLIC_DIRECTUS_URL}
+    depends_on:
+      - directus # Starts the frontent AFTER Directus is ready
+    command: npm run dev # Runs Nuxt in dev mode
+    
