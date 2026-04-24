@@ -1,8 +1,12 @@
 <script setup lang="ts">
 const { menus, pending, error } = useMenus();
 
+const props = defineProps({
+  menu: { type: String, required: true },
+});
+
 const menu = computed(() => {
-  return menus.value?.find((m) => m.internal_name === "main_menu");
+  return menus.value?.find((m) => m.internal_name === props.menu);
 });
 </script>
 

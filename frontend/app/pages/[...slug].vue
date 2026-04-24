@@ -23,7 +23,7 @@ watchEffect(() => {
 <template>
   <div>
     <h1>Menu</h1>
-    <Menu />
+    <Menu menu="main_menu" />
   </div>
   <div>
     <h1>Page</h1>
