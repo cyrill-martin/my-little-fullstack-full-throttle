@@ -1,0 +1,152 @@
+[
+	{
+		"key": "the_non_translated_internal_item_name",
+		"language": "en-US",
+		"value": "The non-translated internal name of this item"
+	},
+	{
+		"key": "the_non_translated_internal_item_name",
+		"language": "de-DE",
+		"value": "Der nicht übersetzte interne Name dieses Items"
+	},
+	{
+		"key": "parent_page",
+		"language": "en-US",
+		"value": "The parent page"
+	},
+	{
+		"key": "parent_page",
+		"language": "de-DE",
+		"value": "Die übergeordnete Seite"
+	},
+	{
+		"key": "parent_menu",
+		"language": "en-US",
+		"value": "The menu this item is assigned to"
+	},
+	{
+		"key": "parent_menu",
+		"language": "de-DE",
+		"value": "Das Menü, dem dieser Menüpunkt zugeordnet ist"
+	},
+	{
+		"key": "page_title",
+		"language": "en-US",
+		"value": "The title of the page"
+	},
+	{
+		"key": "page_title",
+		"language": "de-DE",
+		"value": "Der Titel der Seite"
+	},
+	{
+		"key": "page_slug",
+		"language": "en-US",
+		"value": "The slugified name for the page to be used in the URL (e.g. home, about-us, etc.)"
+	},
+	{
+		"key": "page_slug",
+		"language": "de-DE",
+		"value": "Der Slug der Seite, der in der URL verwendet wird (z. B. home, ueber-uns, etc.)"
+	},
+	{
+		"key": "page_path",
+		"language": "en-US",
+		"value": "Automatically created full path of the page, which includes the optional parent page"
+	},
+	{
+		"key": "page_path",
+		"language": "de-DE",
+		"value": "Automatisch erstellter vollständiger Pfad der Seite, einschliesslich der optionalen übergeordneten Seite"
+	},
+	{
+		"key": "menu_page_title",
+		"language": "en-US",
+		"value": "If set, the menu items will be nested below the selected page's title (incl. page link)"
+	},
+	{
+		"key": "menu_page_title",
+		"language": "de-DE",
+		"value": "Falls gesetzt, werden die Menüpunkte unterhalb des Titels der ausgewählten Seite (inkl. Link) angezeigt"
+	},
+	{
+		"key": "menu_items",
+		"language": "en-US",
+		"value": "The individual menu items"
+	},
+	{
+		"key": "menu_items",
+		"language": "de-DE",
+		"value": "Die einzelnen Menüpunkte"
+	},
+	{
+		"key": "menu_item_page",
+		"language": "en-US",
+		"value": "If set, the menu item displays the page name and points to it"
+	},
+	{
+		"key": "menu_item_page",
+		"language": "de-DE",
+		"value": "Falls gesetzt, zeigt der Menüpunkt den Seitennamen an und verweist darauf"
+	},
+	{
+		"key": "menu_item_custom_url",
+		"language": "en-US",
+		"value": "The external URL the menu item points to"
+	},
+	{
+		"key": "menu_item_custom_url",
+		"language": "de-DE",
+		"value": "Die externe URL, auf die der Menüpunkt verweist"
+	},
+	{
+		"key": "menu_item_custom",
+		"language": "en-US",
+		"value": "If set, the menu item displays this label and points to the given external URL"
+	},
+	{
+		"key": "menu_item_custom",
+		"language": "de-DE",
+		"value": "Falls gesetzt, zeigt der Menüpunkt diese Bezeichnung an und verweist auf die angegebene externe URL"
+	},
+	{
+		"key": "internal_link",
+		"language": "en-US",
+		"value": "Internal Link"
+	},
+	{
+		"key": "internal_link",
+		"language": "de-DE",
+		"value": "Interner Link"
+	},
+	{
+		"key": "external_link",
+		"language": "en-US",
+		"value": "External Link"
+	},
+	{
+		"key": "external_link",
+		"language": "de-DE",
+		"value": "Externer Link"
+	},
+	{
+		"key": "custom_menu_title",
+		"language": "en-US",
+		"value": "If set, the menu items will be nested below this custom menu title without a link"
+	},
+	{
+		"key": "custom_menu_title",
+		"language": "de-DE",
+		"value": "Falls gesetzt, werden die Menüpunkte unterhalb dieses benutzerdefinierten Menütitels (ohne Link) angezeigt"
+	},
+	{
+		"key": "block_items",
+		"language": "en-US",
+		"value": "The blocks shown on the page in the given order"
+	},
+	{
+		"key": "block_items",
+		"language": "de-DE",
+		"value": "Die auf der Seite gezeigten Blöcke in der angegebenen Reihenfolge"
+	}
+]

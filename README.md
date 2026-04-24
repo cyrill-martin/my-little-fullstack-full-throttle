@@ -87,7 +87,7 @@ This quide starts with setting up a local development environment first. Later i
    git commit -m "Initial commit"
    ```
 
-## Local Development0
+## Local Development
 
 1. cd into the project repository
 1. Start everything up with `docker compose up -d`
@@ -108,7 +108,10 @@ This quide starts with setting up a local development environment first. Later i
 
 ## Productive Deployment
 
-###
+# NOTES
+
+--- For special collections like posts, products, etc. you'll need a separate composable to fetch the data and a /pages/posts/[...slug].vue component. If you need an listing page: /pages/posts/index.vue.
 
 --- Mention how themes_settings work!!
 --- Export db snapshot: docker compose exec directus npx directus schema snapshot ./database/snapshot.yaml
+--- You will need to export/seed the Directus translations (which is a separate menu item in the left bar)

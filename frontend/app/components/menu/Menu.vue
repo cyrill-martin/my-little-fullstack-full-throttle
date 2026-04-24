@@ -2,7 +2,7 @@
 const { menus, pending, error } = useMenus();
 
 const menu = computed(() => {
-  return menus.value?.find((m) => m.internal_name === "Main");
+  return menus.value?.find((m) => m.internal_name === "main_menu");
 });
 </script>
 
