@@ -1,24 +1,24 @@
-import { createDirectus, rest, readItems } from "@directus/sdk";
+// import { createDirectus, rest, readItems } from "@directus/sdk";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
-  const client = createDirectus(config.directusUrl).with(rest());
+  // const client = createDirectus(config.directusUrl).with(rest());
 
-//   const [projects] = await Promise.all([
-//     client.request(
-//       readItems("projects", {
-//         fields: ["translations.title", "translations.description"],
-//         deep: {
-//           translations: { _filter: { languages_code: { _eq: "en-US" } } },
-//         },
-//       }),
-//     ),
-//   ]);
+  // const [projects] = await Promise.all([
+  //   client.request(
+  //     readItems("projects", {
+  //       fields: ["translations.title", "translations.description"],
+  //       deep: {
+  //         translations: { _filter: { languages_code: { _eq: "en-US" } } },
+  //       },
+  //     }),
+  //   ),
+  // ]);
 
-  const baseUrl = process.env.NUXT_PUBLIC_BASE_URL;
+  const baseUrl = config.public.baseUrl;
 
   const lines: string[] = [
-    `# kmapper.ch`,
+    `# Project Title`,
     ``,
     `## Meta`,
     ``,
@@ -37,23 +37,18 @@ export default defineEventHandler(async (event) => {
     ``,
     `## Pages`,
     ``,
-    `- [Home](${baseUrl}/en/home): Business Analysis, Requirements Engineering, and Development for complete projects or as specialized support`,
-    `- [About](${baseUrl}/en/about): Company information, client list, and founder background`,
-    `- [Curation](${baseUrl}/en/curation): Data review, evaluation, and selection services`,
-    `- [Organization](${baseUrl}/en/organization): Requirements analysis and data structuring`,
-    `- [Publication](${baseUrl}/en/publication): Web solutions, visualizations, and documentation`,
-    `- [Projects](${baseUrl}/en/projects): Portfolio of public projects`,
+    `- Example Page: ${baseUrl}/example`,
     ``,
     `## Notable Projects`,
     ``,
   ];
 
-//   for (const project of projects) {
-//     const t = project.translations?.[0];
-//     if (t) {
-//       lines.push(`- ${t.title}: ${t.description ?? ""}`);
-//     }
-//   }
+  //   for (const project of projects) {
+  //     const t = project.translations?.[0];
+  //     if (t) {
+  //       lines.push(`- ${t.title}: ${t.description ?? ""}`);
+  //     }
+  //   }
 
   const finalLines: string[] = lines.concat([
     ``,

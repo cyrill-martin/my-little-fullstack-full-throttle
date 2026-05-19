@@ -41,7 +41,7 @@ This quide starts with setting up a local development environment first. Later i
 1. cd into the repository
 1. Add an empty Readme with `touch README.md`
 
-1. .... ADD THINGS FOR FULL STACK TO THE README (MAYBE SEE KMAPPER.CH)
+1. [ADD TEMPLATE CONTENT TO THE README.md]
 
 ### 2. Docker
 
@@ -127,10 +127,8 @@ This quide starts with setting up a local development environment first. Later i
 1. Apply the database schema with `docker compose exec directus npx directus schema apply /directus/database/schema/snapshot.yaml`
 1. Seed data through the Directus UI:
    - directus_translations:
-   - ...
-   - ...
+   - [MORE TO COME]
 1. Develop as needed
-   - ...
    - Add site-specifics to `/app/composables/useSeo.ts`
    - Add site-specifics to `/server/routes/llms.txt.ts`
    - Add proper LISECNE.md and NOTICE.md files
@@ -144,12 +142,11 @@ This quide starts with setting up a local development environment first. Later i
 ### Add a Directus Extensions
 
 1. cd into `/directus/extensions`
-1. Install the scaffolding tool with `pnpm dlx create-directus-extension@latest`
-   - If already installed, scaffold a new extension with `npx create-directus-extension@latest`
+1. Scaffold a new extension with `npx create-directus-extension@latest`
 1. Follow the instructions
 1. Develop your extension
 1. cd into the given extension folder
-1. Build the extension with `pnpm build`
+1. Build the extension with `npm run build`
 1. Restart the Docker container to pick up the extension
 
 ### Theme Settings Collection
@@ -176,8 +173,6 @@ Export a db snapshot with `docker compose exec directus npx directus schema snap
 ### Data Export/Import
 
 Export/import collection data through the Directus UI.
-
-### NOTES
 
 ## Productive Deployment
 
@@ -220,3 +215,10 @@ Export/import collection data through the Directus UI.
 1. Restart the stack on Prod with `docker compose -f docker-compose.prod.yml up -d`
 1. Update the preview URLs in Directus if needed
 1. Clear build cache with `docker builder prune -f`
+
+#### Copy Prod Data to Local
+
+1. Go to the project directory
+1. Get database with `rsync -avz infomaniak-vps-{{ server-name }}:/opt/{{ project name}}/directus/database/data.db ./directus/database/data.db`
+1. Sync uploads with `rsync -avz --delete infomaniak-vps-{{ server-name }}:/opt/{{ project name}}/directus/uploads/ ./directus/uploads/`
+1. Restart Directus with `docker compose restart directus`
