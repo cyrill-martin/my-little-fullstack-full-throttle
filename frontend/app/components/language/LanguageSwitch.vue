@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { toDirectusLocale } from "~/composables/useDirectusLocale";
+
 const { locale } = useI18n();
 const { pagesId } = usePageState();
 const { localeLinks } = useLanguageSwitch(pagesId);
-import { toDirectusLocale } from "~/composables/useDirectusLocale";
 const { isPreview } = usePreview();
 
 const isGerman = computed(() => locale.value === "de");

@@ -12,7 +12,7 @@
   "dependencies": {
     "@css-render/vue3-ssr": "^0.15.14",
     "@directus/sdk": "^21.2.2",
-    "@directus/visual-editing": "^2.0.0",
+    "@directus/visual-editing": "^2.0.1",
     "@nuxtjs/i18n": "^10.2.4",
     "nuxt": "^4.4.2",
     "vue": "^3.5.30",

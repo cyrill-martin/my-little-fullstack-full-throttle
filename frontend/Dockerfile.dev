@@ -6,13 +6,13 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Package files kopieren
+# Copy package files (for npm install) - this is done before copying the rest to leverage Docker caching
 COPY package*.json ./
 
-# Dependencies installieren
+# Install dependencies - this will be cached by Docker, so it won't run again unless package.json changes
 RUN npm install
 
-# Rest kopieren (wird durch Volume gemountet)
+# Copy the rest of the application code (this will be mounted via volume in development)
 COPY . .
 
 EXPOSE 3000

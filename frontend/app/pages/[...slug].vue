@@ -2,6 +2,7 @@
 import BlockRichtext from "~/components/blocks/BlockRichtext.vue";
 import BlockLink from "~/components/blocks/BlockLink.vue";
 
+const { editableAttr, applyEditor } = useVisualEditor();
 const route = useRoute();
 const { directusLocale } = useDirectusLocale();
 const { label } = await useLabels();
@@ -31,6 +32,17 @@ watchEffect(() => {
   }
 });
 
+onMounted(() => {
+  if (page.value) applyEditor();
+});
+
+watch(
+  () => page.value,
+  (page) => {
+    if (page) applyEditor();
+  },
+);
+
 // Extract SEO data from the page and use the useSeo composable to set meta tags
 const seo = computed(() => page.value?.[0]?.seo);
 useSeo(seo);
@@ -39,7 +51,18 @@ useSeo(seo);
 <template>
   <div>
     <h1>Label</h1>
-    <p>{{ label("contact.mail") }}</p>
+    <p
+      :data-directus="
+        editableAttr({
+          collection: 'labels',
+          item: 'contact.mail',
+          fields: 'translations',
+          mode: 'modal',
+        })
+      "
+    >
+      {{ label("contact.mail") }}
+    </p>
   </div>
   <div>
     <h1>Menu</h1>
@@ -51,7 +74,17 @@ useSeo(seo);
 
     <div v-else-if="error">Error: {{ error.message }}</div>
 
-    <div v-else-if="page && page.length > 0">
+    <div
+      v-else-if="page && page.length > 0"
+      :data-directus="
+        editableAttr({
+          collection: 'pages',
+          item: 1,
+          fields: 'translations',
+          mode: 'modal',
+        })
+      "
+    >
       <pre>{{ page }}</pre>
     </div>
 

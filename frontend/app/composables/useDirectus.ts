@@ -1,5 +1,6 @@
 // This composable handles the communication with Directus
 import { createDirectus, rest, readItems, readSingleton } from "@directus/sdk";
+import type { Query } from "@directus/sdk";
 
 export const useDirectus = () => {
   const config = useRuntimeConfig();
@@ -14,15 +15,15 @@ export const useDirectus = () => {
 
   const client = createDirectus(apiUrl).with(rest());
 
-  const getItems = async (collection, query = {}) => {
-    return await client.request(readItems(collection, query));
+  const getItems = async (collection: string, query: Query<any, any> = {}) => {
+    return await client.request(readItems(collection as any, query));
   };
 
-  const getSingleton = async (collection, query = {}) => {
-    return await client.request(readSingleton(collection, query));
+  const getSingleton = async (collection: string, query: Query<any, any> = {}) => {
+    return await client.request(readSingleton(collection as any, query));
   };
 
-  const assetUrl = (id) => `${publicUrl}/assets/${id}`;
+  const assetUrl = (id: string) => `${publicUrl}/assets/${id}`;
 
   return { client, getItems, getSingleton, assetUrl };
 };
