@@ -24,6 +24,10 @@ fi
 PATHS_TO_COPY=(
   "architecture.png"
   "README.example.md"
+  "docker-compose.yml"
+  "docker-compose.prod.yml"
+  ".env.example"
+  ".env.prod.example"
   "directus/database/schema"
   "directus/database/seed"
   "directus/extensions/page-path-computation/src"
@@ -54,3 +58,24 @@ for path in "${PATHS_TO_COPY[@]}"; do
   cp -r "$src" "$dest"
   echo "Copied $path"
 done
+
+# Create the Directus mount directories (database is seeded/synced later,
+# uploads and extensions hold runtime data and built extensions).
+mkdir -p "$TARGET_DIR/directus/database" "$TARGET_DIR/directus/uploads" "$TARGET_DIR/directus/extensions"
+echo "Created directus/ mount directories"
+
+# Print the handoff checklist: everything the script intentionally leaves to
+# you, so the script-to-human transition is explicit and nothing is forgotten.
+cat <<EOF
+
+Copy done. Remaining manual steps (see the project README for details):
+
+  1. Set ownership and permissions on the Directus directories (needs sudo):
+       sudo chown -R 1000:1000 $TARGET_DIR/directus/
+       sudo chmod -R 755 $TARGET_DIR/directus/
+  2. Set your chosen Directus version in docker-compose.yml and docker-compose.prod.yml
+  3. Create .env and .env.prod from the copied .env.example / .env.prod.example,
+     then add your secrets and set NODE_VERSION
+  4. Build each extension so its dist/ is committed (npm install && npm run build)
+  5. Start the stack, apply the schema, and seed the data in the documented order
+EOF

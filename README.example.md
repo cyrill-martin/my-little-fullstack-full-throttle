@@ -108,6 +108,12 @@ The local `.env.prod` becomes only `.env` on the server:
 
 1. From the project root: `scp .env.prod {{ server-name }}:/opt/{{ project name}}/.env`
 
+### Credentials & Secrets
+
+Because `data.db` is synced between environments, Directus login accounts are shared — they live in the database (`directus_users`), not in env. `DIRECTUS_ADMIN_EMAIL` / `DIRECTUS_ADMIN_PASSWORD` only seed the admin when Directus first boots an *empty* database; once a `data.db` exists or is copied in, they're ignored and the synced database's credentials win.
+
+Keep `DIRECTUS_SECRET` identical in `.env` and `.env.prod`. Directus uses it to sign sessions and to encrypt some values stored in the database (e.g. flow/operation credentials). A mismatch means those values can't be decrypted after a sync and existing sessions are invalidated.
+
 ### Copy Local Data to Prod
 
 This overwrites Prod's database and, with `--delete`, removes any uploads not present locally. Only do this when local is the source of truth — it erases content and images created on Prod.
