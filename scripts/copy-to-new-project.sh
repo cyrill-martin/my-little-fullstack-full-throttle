@@ -23,7 +23,6 @@ fi
 # (mirrors the same relative location at the target).
 PATHS_TO_COPY=(
   "architecture.png"
-  "README.example.md"
   "docker-compose.yml"
   "docker-compose.prod.yml"
   ".env.example"
@@ -64,6 +63,16 @@ done
 mkdir -p "$TARGET_DIR/directus/database" "$TARGET_DIR/directus/uploads" "$TARGET_DIR/directus/extensions"
 echo "Created directus/ mount directories"
 
+# README.example.md becomes the project's README.md (no example copy kept).
+cp -n "$SOURCE_DIR/README.example.md" "$TARGET_DIR/README.md"
+echo "Created README.md from README.example.md"
+
+# Create the real env files from the copied examples. The .example files stay
+# in place as the tracked templates; -n avoids clobbering secrets on re-run.
+cp -n "$TARGET_DIR/.env.example" "$TARGET_DIR/.env"
+cp -n "$TARGET_DIR/.env.prod.example" "$TARGET_DIR/.env.prod"
+echo "Created .env and .env.prod from the examples"
+
 # Print the handoff checklist: everything the script intentionally leaves to
 # you, so the script-to-human transition is explicit and nothing is forgotten.
 cat <<EOF
@@ -74,8 +83,8 @@ Copy done. Remaining manual steps (see the project README for details):
        sudo chown -R 1000:1000 $TARGET_DIR/directus/
        sudo chmod -R 755 $TARGET_DIR/directus/
   2. Set your chosen Directus version in docker-compose.yml and docker-compose.prod.yml
-  3. Create .env and .env.prod from the copied .env.example / .env.prod.example,
-     then add your secrets and set NODE_VERSION
-  4. Build each extension so its dist/ is committed (npm install && npm run build)
-  5. Start the stack, apply the schema, and seed the data in the documented order
+  3. Add your secrets and set NODE_VERSION in .env and .env.prod
+  4. Set the project title in README.md
+  5. Build each extension so its dist/ is committed (npm install && npm run build)
+  6. Start the stack, apply the schema, and seed the data in the documented order
 EOF

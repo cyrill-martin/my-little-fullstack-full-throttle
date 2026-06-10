@@ -71,16 +71,15 @@ This guide helps you to set up the local development environment and includes do
 ### 4. Project Files
 
 1. cd back into the project repository
-1. Run the copy script with the new project's path: `./scripts/copy-to-new-project.sh <path-to-new-project>`. It copies the boilerplate, the `docker-compose*.yml` and `.env*.example` files, creates the `directus/` mount directories, and prints the ownership commands to run next
+1. Run the copy script with the new project's path: `./scripts/copy-to-new-project.sh <path-to-new-project>`. It copies the boilerplate and the `docker-compose*.yml` / `.env*.example` files, creates the `directus/` mount directories, generates `README.md`, `.env`, and `.env.prod`, and prints the remaining manual steps
 1. Run the printed commands to give the Directus directories to the Directus Docker user (UID 1000, usually your local user) and make them readable:
    ```bash
    sudo chown -R 1000:1000 directus/
    sudo chmod -R 755 directus/
    ```
 1. Set your chosen Directus version in `docker-compose.yml` and `docker-compose.prod.yml`
-1. Create `.env` and `.env.prod` from the copied `.env.example` and `.env.prod.example`, then add your secrets (use `A-Z`, `0-9`, and `_` only) which will be used to set the admin at first boot (after that, the log in credentials live in Directus)
-1. Set `NODE_VERSION` in `.env` and `.env.prod` to match your chosen Nuxt/Directus stack (the Dockerfiles default to 22)
-1. Rename `README.example.md` to `README.md` and change its title
+1. In `.env` and `.env.prod`, add your secrets (use `A-Z`, `0-9`, and `_` only — used to set the admin at first boot; after that the login credentials live in Directus) and set `NODE_VERSION` to match your chosen Nuxt/Directus stack (the Dockerfiles default to 22)
+1. Set the project title in `README.md`
 
 ### 5. Extensions & Git
 
