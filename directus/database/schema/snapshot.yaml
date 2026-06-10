@@ -1,5 +1,5 @@
 version: 1
-directus: 11.14.1
+directus: 11.17.4
 vendor: sqlite
 collections:
   - collection: Settings
@@ -249,7 +249,7 @@ collections:
       sort_field: sort
       translations: null
       unarchive_value: draft
-      versioning: false
+      versioning: true
     schema:
       name: labels
   - collection: labels_translations
@@ -317,7 +317,7 @@ collections:
       collapse: open
       collection: menu_items
       color: null
-      display_template: null
+      display_template: '{{internal_name}}'
       group: menus
       hidden: true
       icon: null

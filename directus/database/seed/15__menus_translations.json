@@ -1,0 +1,14 @@
+[
+	{
+		"id": 1,
+		"menus_id": 1,
+		"languages_code": "de-CH",
+		"custom_title": "Mein Custom Home"
+	},
+	{
+		"id": 2,
+		"menus_id": 1,
+		"languages_code": "en-US",
+		"custom_title": "My Custom Home"
+	}
+]

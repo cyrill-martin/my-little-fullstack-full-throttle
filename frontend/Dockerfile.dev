@@ -1,6 +1,8 @@
-FROM node:20-alpine
+# Node version to build/run on. Override at build time to match your stack.
+ARG NODE_VERSION=22
+FROM node:${NODE_VERSION}-alpine
 
-# This file makes sure Nuxt is run in the container and is in the same Docker network as Directus. 
+# This file makes sure Nuxt is run in the container and is in the same Docker network as Directus.
 # Otherwhise Nuxt would be run completely locally.
 # The .dev suffix is a convention for the dev environment.
 

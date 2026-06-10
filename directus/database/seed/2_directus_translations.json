@@ -10,14 +10,54 @@
 		"value": "Der nicht übersetzte interne Name dieses Items"
 	},
 	{
+		"key": "seo_title",
+		"language": "en-US",
+		"value": "The title shown on platforms when the page's URL is shared there"
+	},
+	{
+		"key": "seo_title",
+		"language": "de-DE",
+		"value": "Der Titel, der auf Plattformen angezeigt wird, wenn die URL der Seite dort geteilt wird"
+	},
+	{
+		"key": "seo_keywords",
+		"language": "en-US",
+		"value": "Keywords for page crawlers"
+	},
+	{
+		"key": "seo_keywords",
+		"language": "de-DE",
+		"value": "Keywords für Crawlers"
+	},
+	{
+		"key": "seo_image",
+		"language": "en-US",
+		"value": "The preview image shown on platforms when the page's URL is shared there"
+	},
+	{
+		"key": "seo_image",
+		"language": "de-DE",
+		"value": "Das Vorschaubild, das auf Plattformen angezeigt wird, wenn die URL der Seite dort geteilt wird"
+	},
+	{
+		"key": "seo_description",
+		"language": "en-US",
+		"value": "The description shown on platforms when the page's URL is shared there"
+	},
+	{
+		"key": "seo_description",
+		"language": "de-DE",
+		"value": "Die Beschreibung, die auf Plattformen angezeigt wird, wenn die URL der Seite dort geteilt wird"
+	},
+	{
 		"key": "parent_page",
 		"language": "en-US",
-		"value": "The parent page"
+		"value": "The parent page if you want to nest this site below another one"
 	},
 	{
 		"key": "parent_page",
 		"language": "de-DE",
-		"value": "Die übergeordnete Seite"
+		"value": "Die übergeordnete Seite, falls diese Seite unter einer anderen Seite eingebettet werden soll"
 	},
 	{
 		"key": "parent_menu",
@@ -108,6 +148,16 @@
 		"key": "menu_item_custom",
 		"language": "de-DE",
 		"value": "Falls gesetzt, zeigt der Menüpunkt diese Bezeichnung an und verweist auf die angegebene externe URL"
+	},
+	{
+		"key": "label_value",
+		"language": "en-US",
+		"value": "The human-readable text "
+	},
+	{
+		"key": "label_value",
+		"language": "de-DE",
+		"value": "Der für Menschen lesbare Text"
 	},
 	{
 		"key": "internal_link",

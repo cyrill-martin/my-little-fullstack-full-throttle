@@ -1,0 +1,13 @@
+[
+	{
+		"id": 1,
+		"status": "published",
+		"user_created": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
+		"date_created": "2026-04-17T14:00:57.980Z",
+		"user_updated": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
+		"date_updated": "2026-04-20T13:44:03.220Z",
+		"font_size_base": "18px",
+		"color_primary": 5,
+		"color_secondary": 3
+	}
+]

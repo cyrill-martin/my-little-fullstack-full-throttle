@@ -1,0 +1,12 @@
+[
+	{
+		"internal_name": "home",
+		"parent": null,
+		"status": "published"
+	},
+	{
+		"internal_name": "subsite",
+		"parent": 1,
+		"status": "published"
+	}
+]
