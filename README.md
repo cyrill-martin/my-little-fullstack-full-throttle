@@ -53,7 +53,7 @@ This guide helps you to set up the local development environment and includes do
 ### 3. Nuxt
 
 1. Create a fresh SSR Nuxt project called 'frontend' with `npx nuxi init frontend`
-   - Minimal setup
+   - Minimal setup for Nuxt 4
    - npm
    - No git repository (here)
    - No modules
@@ -86,7 +86,7 @@ This guide helps you to set up the local development environment and includes do
 
 1. If you chose a newer Directus version, bump `@directus/extensions-sdk` and the `host` range in each extension's `package.json` to match
 1. Build each extension so its `dist/` is committed: cd into the extension folder, run `npm install` and then `npm run build`, then cd back
-1. Check the .gitignore
+1. Add a .gitignore to the project root
 
    ```git
    # Environment
@@ -132,26 +132,36 @@ This guide helps you to set up the local development environment and includes do
 1. Start everything up with `docker compose up -d`
    - Visit http://localhost:8055 for Directus, log in with the credentials from your .env file
      - Set the owner in case of the first time logging in to the Directus instance
-   - Visit http://localhost:3000 for the Nuxt frontend
+   - Visit http://localhost:3000 for the Nuxt frontend (don't expect anything there yet)
 1. Apply the database schema with `docker compose exec directus npx directus schema apply /directus/database/schema/snapshot.yaml`
+1. Restart Directus with `docker compose restart directus` so it picks up the schema
 1. Seed data through the Directus UI. Import in this order so relational IDs resolve (each `*_translations` set goes right after its parent, and depends on `languages`):
    1. `languages`
-   1. `directus_translations` (interface strings, no dependencies)
-   1. `color_palette`
-   1. `labels`, then `labels_translations`
-   1. `block_richtext`, then `block_richtext_translations`
-   1. `block_link`, then `block_link_translations`
-   1. `block_seo`, then `block_seo_translations`
-   1. `pages`, then `pages_translations`
-   1. `menus`, then `menus_translations`
-   1. `menu_items`, then `menu_items_translations`
-   1. `theme_settings` (singleton — see note below)
-   1. `pages_blocks` (M2A junction; needs `pages` and all `block_*` items to exist first)
+   2. `directus_translations` (interface strings, no dependencies)
+   3. `color_palette`
+   4. `labels`
+   5. `labels_translations`
+   6. `pages`
+   7. `pages_translations` (before the blocks — `block_link` references a page)
+   8. `block_richtext`
+   9. `block_richtext_translations`
+   10. `block_link`
+   11. `block_link_translations`
+   12. `block_seo`
+   13. `block_seo_translations`
+   14. `menus`
+   15. `menus_translations`
+   16. `menu_items`
+   17. `menu_items_translations`
+   18. `theme_settings` (singleton — see note below)
+   19. `pages_blocks` (M2A junction; needs `pages` and all `block_*` items to exist first)
 
    Notes:
    - Import into empty collections so the seeded IDs don't collide with existing auto-increment values.
    - `theme_settings` is a singleton and has no list view to export/import. Seed it via the API, or temporarily untick "Treat as Singleton" in Settings → Data Model to expose the Export/Import actions, then re-enable it.
    - `block_seo` references uploaded images. Those come from the `directus/uploads/` directory (see Data Export/Import), not the UI import.
+
+1. Make the relevant collections publicly available in the Directus access policy settings
 
 1. Develop as needed
    - Add site-specifics to `/app/composables/useSeo.ts`

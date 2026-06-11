@@ -1,12 +1,10 @@
 [
 	{
-		"id": 1,
 		"labels_key": "contact.mail",
 		"languages_code": "de-CH",
 		"value": "mail@example.ch"
 	},
 	{
-		"id": 2,
 		"labels_key": "contact.mail",
 		"languages_code": "en-US",
 		"value": "mail@example.com"

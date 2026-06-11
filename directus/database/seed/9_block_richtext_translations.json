@@ -1,24 +1,20 @@
 [
 	{
-		"id": 1,
 		"block_richtext_id": 1,
 		"languages_code": "de-CH",
 		"content": "<h1>Test</h1>"
 	},
 	{
-		"id": 2,
 		"block_richtext_id": 1,
 		"languages_code": "en-US",
 		"content": "<h1>Test</h1>"
 	},
 	{
-		"id": 3,
 		"block_richtext_id": 2,
 		"languages_code": "de-CH",
 		"content": "<p>Ein wenig Inhalt</p>"
 	},
 	{
-		"id": 4,
 		"block_richtext_id": 2,
 		"languages_code": "en-US",
 		"content": "<p>Some content</p>"

@@ -1,20 +1,17 @@
 [
 	{
-		"id": 1,
 		"pages_id": 1,
 		"item": "1",
 		"collection": "block_richtext",
 		"sort": 1
 	},
 	{
-		"id": 2,
 		"pages_id": 1,
 		"item": "2",
 		"collection": "block_richtext",
 		"sort": 2
 	},
 	{
-		"id": 3,
 		"pages_id": 1,
 		"item": "1",
 		"collection": "block_link",

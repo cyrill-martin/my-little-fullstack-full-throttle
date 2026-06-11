@@ -1,86 +1,26 @@
 [
 	{
-		"id": 2,
+		"id": 1,
 		"status": "published",
 		"sort": 3,
-		"user_created": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_created": "2026-04-20T15:43:19.212Z",
-		"user_updated": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_updated": "2026-04-21T15:32:51.164Z",
 		"internal_name": "nav_kmapperGmbH",
 		"menu": 1,
 		"page": null
 	},
 	{
-		"id": 3,
-		"status": "published",
-		"sort": null,
-		"user_created": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_created": "2026-04-20T15:43:19.239Z",
-		"user_updated": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_updated": "2026-04-21T11:56:06.802Z",
-		"internal_name": "nav_home",
-		"menu": null,
-		"page": 1
-	},
-	{
-		"id": 4,
-		"status": "published",
-		"sort": null,
-		"user_created": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_created": "2026-04-21T14:32:53.977Z",
-		"user_updated": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_updated": "2026-04-21T14:37:17.333Z",
-		"internal_name": "Sub",
-		"menu": null,
-		"page": null
-	},
-	{
-		"id": 5,
-		"status": "published",
-		"sort": 2,
-		"user_created": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_created": "2026-04-21T14:38:02.733Z",
-		"user_updated": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_updated": "2026-05-18T13:26:55.104Z",
-		"internal_name": "nav_SubSite",
-		"menu": null,
-		"page": null
-	},
-	{
-		"id": 6,
+		"id": 2,
 		"status": "published",
 		"sort": 1,
-		"user_created": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_created": "2026-04-21T15:32:51.154Z",
-		"user_updated": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_updated": "2026-05-18T13:26:55.104Z",
 		"internal_name": "nav_home",
-		"menu": null,
+		"menu": 1,
 		"page": 1
 	},
 	{
-		"id": 7,
+		"id": 3,
 		"status": "published",
-		"sort": 4,
-		"user_created": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_created": "2026-05-18T13:48:27.471Z",
-		"user_updated": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_updated": "2026-05-18T13:51:06.052Z",
-		"internal_name": "nav_subSite",
-		"menu": null,
-		"page": 4
-	},
-	{
-		"id": 8,
-		"status": "published",
-		"sort": 4,
-		"user_created": "02148f57-acb6-4f22-8fc8-5a161e287c5d",
-		"date_created": "2026-05-18T13:57:02.271Z",
-		"user_updated": null,
-		"date_updated": null,
+		"sort": 2,
 		"internal_name": "nav_subSite",
 		"menu": 1,
-		"page": 4
+		"page": 2
 	}
 ]

@@ -1,0 +1,14 @@
+[
+	{
+		"menu_items_id": 1,
+		"languages_code": "de-CH",
+		"label": "kmapper GmbH",
+		"external_url": "https://kmapper.ch/de/home"
+	},
+	{
+		"menu_items_id": 1,
+		"languages_code": "en-US",
+		"label": "kmapper GmbH",
+		"external_url": "https://kmapper.ch/en/home"
+	}
+]

@@ -1,0 +1,30 @@
+[
+	{
+		"pages_id": 1,
+		"languages_code": "de-CH",
+		"title": "Home_de-CH",
+		"slug": "home",
+		"path": "/home"
+	},
+	{
+		"pages_id": 1,
+		"languages_code": "en-US",
+		"title": "Home_en-US",
+		"slug": "home",
+		"path": "/home"
+	},
+	{
+		"pages_id": 2,
+		"languages_code": "de-CH",
+		"title": "Unterseite",
+		"slug": "unterseite",
+		"path": "/home/unterseite"
+	},
+	{
+		"pages_id": 2,
+		"languages_code": "en-US",
+		"title": "Subsite",
+		"slug": "subsite",
+		"path": "/home/subsite"
+	}
+]

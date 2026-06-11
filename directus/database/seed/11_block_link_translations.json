@@ -1,12 +1,10 @@
 [
 	{
-		"id": 1,
 		"block_link_id": 1,
 		"languages_code": "de-CH",
 		"link_text": "geh nach Hause"
 	},
 	{
-		"id": 2,
 		"block_link_id": 1,
 		"languages_code": "en-US",
 		"link_text": "go home"

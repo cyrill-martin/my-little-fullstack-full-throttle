@@ -1,6 +1,5 @@
 [
 	{
-		"id": 1,
 		"block_seo_id": 1,
 		"languages_code": "de-CH",
 		"image_alt_text": null,
@@ -9,7 +8,6 @@
 		"keywords": "home, Haus, Keyword"
 	},
 	{
-		"id": 2,
 		"block_seo_id": 1,
 		"languages_code": "en-US",
 		"image_alt_text": null,
