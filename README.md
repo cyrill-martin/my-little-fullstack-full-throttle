@@ -71,7 +71,7 @@ This guide helps you to set up the local development environment and includes do
 ### 4. Project Files
 
 1. cd back into the project repository
-1. Run the copy script with the new project's path: `./scripts/copy-to-new-project.sh <path-to-new-project>`. It copies the boilerplate and the `docker-compose*.yml` / `.env*.example` files, creates the `directus/` mount directories, generates `README.md`, `.env`, and `.env.prod`, and prints the remaining manual steps
+1. Run the copy script with the new project's path: `./scripts/copy-to-new-project.sh <path-to-new-project>` (get the complete path of the new directory with `pwd`). It copies the boilerplate and the `docker-compose*.yml` / `.env*.example` files, creates the `directus/` mount directories, generates `README.md`, `.env`, and `.env.prod`, and prints the remaining manual steps
 1. Run the printed commands to give the Directus directories to the Directus Docker user (UID 1000, usually your local user) and make them readable:
    ```bash
    sudo chown -R 1000:1000 directus/
@@ -79,6 +79,7 @@ This guide helps you to set up the local development environment and includes do
    ```
 1. Set your chosen Directus version in `docker-compose.yml` and `docker-compose.prod.yml`
 1. In `.env` and `.env.prod`, add your secrets (use `A-Z`, `0-9`, and `_` only — used to set the admin at first boot; after that the login credentials live in Directus) and set `NODE_VERSION` to match your chosen Nuxt/Directus stack (the Dockerfiles default to 22)
+   - For commercial/client prod, also set `DIRECTUS_LICENSE_KEY` in `.env.prod` — free Open Innovation Grant key if under $5M revenue and 50 employees, otherwise paid. No key is needed locally. See "Directus License" in the project README
 1. Set the project title in `README.md`
 
 ### 5. Extensions & Git

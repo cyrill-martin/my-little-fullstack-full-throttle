@@ -20,6 +20,7 @@ services:
       CORS_ENABLED: "true"
       CORS_ORIGIN: ${CORS_ORIGIN}
       PUBLIC_URL: ${DIRECTUS_PUBLIC_URL}
+      TELEMETRY: "false"
       CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC: "'self' ${CORS_ORIGIN}"
       CONTENT_SECURITY_POLICY_DIRECTIVES__CHILD_SRC: "'self' blob: ${CORS_ORIGIN}"
       # Other stuff

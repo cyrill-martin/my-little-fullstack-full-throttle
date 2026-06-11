@@ -78,11 +78,29 @@ Export/import collection data through the Directus UI.
 
 ## Productive Deployment
 
+### Directus License
+
+Since v12 (MSCL license) an unlicensed Directus ("Core" tier) is non-commercial
+only, so any commercial or client production deployment needs a license key.
+(v11 and earlier used BSL 1.1 with no key mechanism — free commercial use under
+the same revenue/size threshold.) Eligibility:
+
+- **Under $5M annual revenue and fewer than 50 employees:** free via the
+  [Open Innovation Grant](https://directus.com/oig). Apply, receive a license key
+  (covers up to 5 activations — local, dev, staging, prod).
+- **Above that threshold:** a paid commercial license.
+
+Set the key as `DIRECTUS_LICENSE_KEY` in `.env.prod` (mapped to Directus'
+`LICENSE_KEY`). `DIRECTUS_PUBLIC_URL` must be a valid absolute URL or activation
+fails — Directus still boots, but logs a license error. Local development on the
+Core tier needs no key.
+
 ### Checklist
 
 - Does `/app/composables/useSeo.ts` have site-specific variables?
 - Does `/server/routes/llms.txt.ts` have site-specific content?
 - Are proper LICENSE.md and NOTICE.md files in place?
+- Is `DIRECTUS_LICENSE_KEY` set in `.env.prod` (see Directus License above)?
 
 ### First Deployment
 
