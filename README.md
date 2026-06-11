@@ -109,8 +109,9 @@ This guide helps you to set up the local development environment and includes do
    .vscode/
    .idea/
 
-   # Nginx
-   nginx/
+   # Nginx (track the vhost template, ignore real per-domain configs)
+   nginx/*
+   !nginx/vhost.example.conf
 
    # OS
    .DS_Store

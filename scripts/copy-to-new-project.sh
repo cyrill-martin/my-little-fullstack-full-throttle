@@ -27,6 +27,7 @@ PATHS_TO_COPY=(
   "docker-compose.prod.yml"
   ".env.example"
   ".env.prod.example"
+  "nginx/vhost.example.conf"
   "directus/database/schema"
   "directus/database/seed"
   "directus/extensions/page-path-computation/src"

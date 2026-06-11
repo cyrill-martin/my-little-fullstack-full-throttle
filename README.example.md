@@ -84,10 +84,42 @@ Export/import collection data through the Directus UI.
 - Does `/server/routes/llms.txt.ts` have site-specific content?
 - Are proper LICENSE.md and NOTICE.md files in place?
 
+### First Deployment
+
+One-time setup of the project on the server.
+
+1. SSH into the server
+1. Create the project directory: `sudo mkdir -p /opt/{{ project name }}`
+1. Take ownership: `sudo chown $USER:$USER /opt/{{ project name }}`
+1. `cd /opt/{{ project name }}`
+1. Initialize and pull the repository:
+   ```bash
+   git init
+   git remote add origin https://github.com/cyrill-martin/{{ project name }}.git
+   git branch --set-upstream-to=origin/main main
+   git pull origin main
+   ```
+1. From your local project, copy the prod env to the server: `scp .env.prod {{ server name }}:/opt/{{ project name }}/.env` (the local `.env.prod` becomes `.env` on the server)
+1. Create the Directus mount directories and give them to the Directus user (UID 1000):
+   ```bash
+   mkdir -p directus/database directus/uploads directus/extensions
+   sudo chown -R 1000:1000 directus/
+   ```
+1. Log in to Docker: `docker login -u kmapper`
+1. Build and start the stack: `docker compose -f docker-compose.prod.yml up -d --build`
+1. Set up nginx + TLS (see below)
+1. If seeding from local, follow "Copy Local Data to Prod"
+
+### Nginx & TLS
+
+nginx runs on the host (not in Docker) and reverse-proxies the public domain to the frontend container (`:3000`) and a CMS subdomain to Directus (`:8055`). The server-level nginx and Certbot setup (shared config file, `certbot --expand`, reload) lives in the **private server repo** — this project only carries the two server blocks it needs.
+
+`nginx/vhost.example.conf` is the reference for this project's blocks: frontend `:3000` and Directus `:8055` (with `client_max_body_size 100M` for uploads). On first deploy, add these two blocks to the server's nginx config, obtain certificates, and reload — see the private server repo for those server-level steps.
+
 ### Frontend
 
 1. SSH into the server
-1. `cd /opt/{{ project folder }}`
+1. `cd /opt/{{ project name }}`
 1. Pull latest code with `git pull`
 1. Rebuild and restart the frontend container with `docker compose -f docker-compose.prod.yml up -d --build frontend`
 1. Clear build cache with `docker builder prune -f`
@@ -98,19 +130,20 @@ Extension `dist/` is committed, so the server only pulls and restarts — no bui
 
 1. Locally, build each changed extension (`npm run build` in its folder) and commit the updated `dist/`
 1. SSH into the server
-1. `cd /opt/{{ project folder }}`
+1. `cd /opt/{{ project name }}`
 1. Pull latest code with `git pull`
 1. Restart Directus to pick up the extensions with `docker compose -f docker-compose.prod.yml restart directus`
 
 ### Environment Variables
 
-The local `.env.prod` becomes only `.env` on the server:
+To change env vars after the first deploy, push the updated file and restart. The local `.env.prod` becomes only `.env` on the server:
 
-1. From the project root: `scp .env.prod {{ server-name }}:/opt/{{ project name}}/.env`
+1. From the project root: `scp .env.prod {{ server name }}:/opt/{{ project name }}/.env`
+1. Restart the stack: `docker compose -f docker-compose.prod.yml up -d`
 
 ### Credentials & Secrets
 
-Because `data.db` is synced between environments, Directus login accounts are shared — they live in the database (`directus_users`), not in env. `DIRECTUS_ADMIN_EMAIL` / `DIRECTUS_ADMIN_PASSWORD` only seed the admin when Directus first boots an *empty* database; once a `data.db` exists or is copied in, they're ignored and the synced database's credentials win.
+Because `data.db` is synced between environments, Directus login accounts are shared — they live in the database (`directus_users`), not in env. `DIRECTUS_ADMIN_EMAIL` / `DIRECTUS_ADMIN_PASSWORD` only seed the admin when Directus first boots an _empty_ database; once a `data.db` exists or is copied in, they're ignored and the synced database's credentials win.
 
 Keep `DIRECTUS_SECRET` identical in `.env` and `.env.prod`. Directus uses it to sign sessions and to encrypt some values stored in the database (e.g. flow/operation credentials). A mismatch means those values can't be decrypted after a sync and existing sessions are invalidated.
 
@@ -120,13 +153,13 @@ This overwrites Prod's database and, with `--delete`, removes any uploads not pr
 
 1. Stop Directus on Prod with:
    1. SSH into the server
-   1. `cd /opt/{{ project name}}`
+   1. `cd /opt/{{ project name }}`
    1. `docker compose -f docker-compose.prod.yml stop directus`
 1. Stop local Directus so the database is checkpointed before copying with `docker compose stop directus`
 1. Go to your local dev directory
-1. Copy the database to Prod with `rsync -avz ./directus/database/data.db {{ server-name }}:/opt/{{ project name}}/directus/database/data.db`
-1. Copy and sync the uploaded files with `rsync -avz --delete ./directus/uploads/ {{ server name }}:/opt/{{ project name}}/directus/uploads/`
-1. Restore ownership for the Directus user on the server with `sudo chown 1000:1000 /opt/{{ project name}}/directus/database/data.db`
+1. Copy the database to Prod with `rsync -avz ./directus/database/data.db {{ server name }}:/opt/{{ project name }}/directus/database/data.db`
+1. Copy and sync the uploaded files with `rsync -avz --delete ./directus/uploads/ {{ server name }}:/opt/{{ project name }}/directus/uploads/`
+1. Restore ownership for the Directus user on the server with `sudo chown 1000:1000 /opt/{{ project name }}/directus/database/data.db`
 1. (Optionally deploy the new frontend)
 1. Restart the stack on Prod with `docker compose -f docker-compose.prod.yml up -d`
 1. Update the preview URLs in Directus if needed
@@ -136,10 +169,10 @@ This overwrites Prod's database and, with `--delete`, removes any uploads not pr
 
 1. Stop Directus on Prod so its database is checkpointed before copying:
    1. SSH into the server
-   1. `cd /opt/{{ project name}}`
+   1. `cd /opt/{{ project name }}`
    1. `docker compose -f docker-compose.prod.yml stop directus`
 1. Go to the project directory
-1. Get database with `rsync -avz {{ server-name }}:/opt/{{ project name}}/directus/database/data.db ./directus/database/data.db`
-1. Sync uploads with `rsync -avz --delete {{ server-name }}:/opt/{{ project name}}/directus/uploads/ ./directus/uploads/`
+1. Get database with `rsync -avz {{ server name }}:/opt/{{ project name }}/directus/database/data.db ./directus/database/data.db`
+1. Sync uploads with `rsync -avz --delete {{ server name }}:/opt/{{ project name }}/directus/uploads/ ./directus/uploads/`
 1. Restart Directus on Prod with `docker compose -f docker-compose.prod.yml start directus`
 1. Restart local Directus with `docker compose restart directus`
