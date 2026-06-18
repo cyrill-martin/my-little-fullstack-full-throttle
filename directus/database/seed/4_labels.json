@@ -1,14 +1,6 @@
 [
 	{
 		"key": "contact.mail",
-		"status": "published",
-		"translations": [
-			{
-				"value": "mail@example.ch"
-			},
-			{
-				"value": "mail@example.com"
-			}
-		]
+		"status": "published"
 	}
 ]
