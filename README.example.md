@@ -110,13 +110,8 @@ One-time setup of the project on the server.
 1. Create the project directory: `sudo mkdir -p /opt/{{ project name }}`
 1. Take ownership: `sudo chown $USER:$USER /opt/{{ project name }}`
 1. `cd /opt/{{ project name }}`
-1. Initialize and pull the repository:
-   ```bash
-   git init
-   git remote add origin https://github.com/cyrill-martin/{{ project name }}.git
-   git branch --set-upstream-to=origin/main main
-   git pull origin main
-   ```
+1. `git clone https://github.com/cyrill-martin/{{ project name }}.git .`
+   The trailing . keeps everything in the current directory instead of nesting it under aethik.ch/
 1. From your local project, copy the prod env to the server: `scp .env.prod {{ server name }}:/opt/{{ project name }}/.env` (the local `.env.prod` becomes `.env` on the server)
 1. Create the Directus mount directories and give them to the Directus user (UID 1000):
    ```bash
